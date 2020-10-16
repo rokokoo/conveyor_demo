@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="gui" value="true" />
+	</include>
+
+	<group ns="conveyor">
+		<node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-file $(find demo_world)/urdf/conveyor.urdf -urdf -model conveyor_belt" />
+	</group>
+
+</launch>

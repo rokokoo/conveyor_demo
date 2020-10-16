@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="liukuhihna_gazebo">
+
+	<link name="world" />
+
+	<joint name="fixed" type="fixed">
+		<parent link="world"/>
+		<child link="belt_visual"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0"/>
+	</joint>
+	
+
+	<link name="belt_visual">
+		<inertial>
+			<origin xyz="1.1327E-16 -3.3286E-17 0.66019" rpy="0 0 0" />
+			<mass value="71.953" />
+			<inertia ixx="7.5972" ixy="-1.394E-14" ixz="1.9328E-17" iyy="0.99673" iyz="-9.2056E-18" izz="8.1168" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://demo_world/meshes/conveyor_belt.stl" />
+			</geometry>
+			<material name="">
+				<color rgba="1 1 1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0 0.365" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="1.2 0.463 0.73"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="belt_joint" type="prismatic">
+		<origin xyz="0.0 0.0 0.74" rpy="0.0 0.0 0.0"/>
+		<parent link="belt_visual"/>
+		<child link="belt_moving"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="0.0" upper="1" effort="1000" velocity="1000"/>
+	</joint>
+
+	<link name="belt_moving">
+		<inertial>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<mass value="100"/>
+			<inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+		</inertial>
+		<!-- <visual>
+			<origin xyz="0.0 0.0 0.0005" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.425 1.2 0.001"/>
+			</geometry>
+			<material name="test">
+				<color rgba="1 0 1 1" />
+			</material>
+		</visual> -->
+		<collision>
+			<origin xyz="0.0 0.0 0.0005" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.425 1.2 0.001"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<gazebo>
+		<plugin name="conveyor_belt_plugin" filename="libROSConveyorBeltPlugin.so">
+			<robot_namespace>/</robot_namespace>
+			<link>belt_moving</link>
+			<power>0</power>
+			<max_velocity>1.0</max_velocity>
+		</plugin>
+	</gazebo>
+</robot>

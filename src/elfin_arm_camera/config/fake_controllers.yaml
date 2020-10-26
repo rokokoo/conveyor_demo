@@ -1,0 +1,15 @@
+controller_list:
+  - name: fake_elfin_arm_controller
+    joints:
+      - elfin_joint1
+      - elfin_joint2
+      - elfin_joint3
+      - elfin_joint4
+      - elfin_joint5
+      - elfin_joint6
+  - name: fake_robotiq_gripper_controller
+    joints:
+      - robotiq_finger_joint
+initial:  # Define initial robot poses.
+  - group: elfin_arm
+    pose: home

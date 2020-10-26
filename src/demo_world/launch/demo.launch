@@ -8,23 +8,22 @@
 		<node name="spawn_model_belt" pkg="gazebo_ros" type="spawn_model" args="-file $(find demo_world)/urdf/conveyor.urdf -urdf -model conveyor_belt" respawn="false" output="screen" />
 	</group>
 
-	<group ns="elfin_arm">
-		<!-- send robot urdf to param server -->
-		<param name="robot_description" command="$(find xacro)/xacro '$(find samk_description)/urdf/samk_2f_85.urdf.xacro'"/>
 
-		<!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
-		<node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model samk -x -0.4 -y 0 -z 0.5" respawn="false" output="screen" />
+	<!-- send robot urdf to param server -->
+	<param name="robot_description" command="$(find xacro)/xacro '$(find demo_world)/urdf/samk_2f_85_depth.urdf.xacro'"/>
 
-		<!-- Load joint controller configurations from YAML file to parameter server -->
-		<rosparam file="$(find samk_2f_85_gripper)/config/ros_controllers.yaml" command="load"/>
+	<!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
+	<node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model samk -x -0.7 -y 0 -z 0.5" respawn="false" output="screen" />
 
-		<!-- Load the controllers -->
-		<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" 
-		args="
+	<!-- Load joint controller configurations from YAML file to parameter server -->
+	<rosparam file="$(find elfin_arm_camera)/config/ros_controllers.yaml" command="load"/>
+
+	<!-- Load the controllers -->
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
 		joint_state_controller
 		elfin_arm_controller
-		gripper_controller
+		robotiq_gripper
 		--timeout 20" />
-	</group>
+
 
 </launch>

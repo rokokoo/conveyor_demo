@@ -11,6 +11,9 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
 )
 
+find_package(octomap REQUIRED)
+
+
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 

@@ -49,12 +49,16 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>rospy</build_depend>
+  
+  <!-- <depend>rospy</depend> -->
   <build_export_depend>rospy</build_export_depend>
-  <exec_depend>rospy</exec_depend>
-
-  <build_depend>octomap</build_depend>
-  <exec_depend>octomap</exec_depend>
+  <depend>octomap</depend>
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>actionlib</depend>
+  <depend>geometry_msgs</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

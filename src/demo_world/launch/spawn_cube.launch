@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+	<group ns="cube_set">
+		<param name="red_cube_description" command="$(find xacro)/xacro '$(find demo_world)/urdf/red_cube.xacro'"/>
+		<param name="green_cube_description" command="$(find xacro)/xacro '$(find demo_world)/urdf/green_cube.xacro'"/>
+		<param name="blue_cube_description" command="$(find xacro)/xacro '$(find demo_world)/urdf/blue_cube.xacro'"/>
+
+		<node name="spawn_red_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param red_cube_description -model red_cube -x 0 -y 0 -z 0.75" respawn="false" output="screen" />
+		<node name="spawn_green_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param green_cube_description -model green_cube -x 0 -y -0.24 -z 0.75" respawn="false" output="screen" />
+		<node name="spawn_blue_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param blue_cube_description -model blue_cube -x 0 -y 0.24 -z 0.75" respawn="false" output="screen" />
+	</group>
+</launch>

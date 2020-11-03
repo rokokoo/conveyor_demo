@@ -8,7 +8,13 @@
   <xacro:robotiq_arg2f_85 prefix="robotiq_"/>
 
   <!-- Intel RealSense D435 -->
-  <xacro:include filename="$(find demo_world)/urdf/d435_camera.urdf.xacro" />
+  <xacro:arg name="use_nominal_extrinsics" default="true"/>
+  <xacro:arg name="add_plug" default="false" />
+  <xacro:include filename="$(find demo_world)/urdf/_d435.urdf.xacro" />
+  
+  <xacro:sensor_d435 parent="elfin_end_link" use_nominal_extrinsics="$(arg use_nominal_extrinsics)">
+    <origin xyz="-0.045 0 0.02" rpy="0 -${pi/2} 0"/>
+  </xacro:sensor_d435>
 
   <!-- TOOL CONNECTOR -->
   <joint name="tool_connector" type="fixed">
@@ -16,6 +22,7 @@
     <parent link="elfin_end_link" />
     <child link="robotiq_robotiq_arg2f_base_link" />
   </joint>
+
 
   <gazebo reference="camera_link">
     <self_collide>0</self_collide>
@@ -29,8 +36,8 @@
       <slip2>0</slip2>-->
     <kp>1e+13</kp>
     <kd>1</kd>
-    <!--<max_vel>0.01</max_vel>
-      <min_depth>0</min_depth>-->
+    <!-- <max_vel>0.01</max_vel> -->
+    <!-- <min_depth>0</min_depth> -->
     <sensor name="color" type="camera">
       <camera name="realsense">
         <horizontal_fov>1.211259</horizontal_fov>
@@ -61,10 +68,10 @@
           <height>720</height>
           <format>L_INT8</format>
         </image>
-        <clip>
+        <!-- <clip>
           <near>0.1</near>
           <far>100</far>
-        </clip>
+        </clip> -->
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
@@ -83,10 +90,10 @@
           <height>720</height>
           <format>L_INT8</format>
         </image>
-        <clip>
+        <!-- <clip>
           <near>0.1</near>
           <far>100</far>
-        </clip>
+        </clip> -->
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
@@ -104,15 +111,15 @@
           <width>1280</width>
           <height>720</height>
         </image>
-        <clip>
+        <!-- <clip>
           <near>0.1</near>
           <far>100</far>
-        </clip>
-        <noise>
+        </clip> -->
+        <!-- <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
           <stddev>0.100</stddev>
-        </noise>
+        </noise> -->
       </camera>
       <always_on>1</always_on>
       <update_rate>90</update_rate>
@@ -141,7 +148,7 @@
       <rangeMaxDepth>10.0</rangeMaxDepth>
       <pointCloud>true</pointCloud>
       <pointCloudTopicName>depth/points</pointCloudTopicName>
-      <pointCloudCutoff>0.5</pointCloudCutoff>
+      <pointCloudCutoff>0.2</pointCloudCutoff>
     </plugin>
   </gazebo>
 

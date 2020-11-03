@@ -40,4 +40,7 @@
 		<arg name="rviz_config" value="$(find elfin_arm_camera)/launch/moveit.rviz"/>
 		<arg name="debug" value="$(arg debug)"/>
 	</include>
+
+	<arg name="scene_file" default="$(find demo_world)/launch/scene_geom.scene" />
+	<node name="moveit_publish_scene_from_text" pkg="moveit_ros_planning" type="moveit_publish_scene_from_text" args="$(arg scene_file)" />
 </launch>

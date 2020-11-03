@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="cube">
+	<xacro:macro name="cube_spawn" params="m w h d color">
+		<link name="base_link">
+			<inertial>
+				<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+				<mass value="${m}"/>
+				<inertia ixx="${(m*(h**2 + d**2))/12}" ixy="0.0" ixz="0.0" iyy="${(m*(w**2 + d**2))/12}" iyz="0.0" izz="${(m*(w**2 + h**2))/12}"/>
+			</inertial>
+			<visual>
+				<origin xyz="0.0 0.0 ${h/2}" rpy="0.0 0.0 0.0"/>
+				<geometry>
+					<box size="${d} ${w} ${h}"/>
+				</geometry>
+				<material name="red">
+					<color rgba="1 0 0 1" />
+				</material>
+			</visual>
+			<collision>
+				<origin xyz="0.0 0.0 ${h/2}" rpy="0.0 0.0 0.0"/>
+				<geometry>
+					<box size="${d} ${w} ${h}"/>
+				</geometry>
+			</collision>
+		</link>
+		<gazebo reference="base_link">
+			<material>Gazebo/${color}</material>
+		</gazebo>
+	</xacro:macro>
+</robot>

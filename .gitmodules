@@ -1,7 +1,3 @@
 [submodule "src/gazebo-conveyor"]
 	path = src/gazebo-conveyor
 	url = https://github.com/rokokoo/gazebo-conveyor.git
-[submodule "src/elfin_manipulator"]
-	path = src/elfin_manipulator
-	url = https://github.com/rokokoo/elfin_manipulator.git
-	branch = melodic-devel

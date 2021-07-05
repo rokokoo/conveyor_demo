@@ -28,20 +28,19 @@ class CubeSpawner():
 		return res.pose.position.z
 
 	def spawnModel(self):
-		if self.checkModel()==False:
-			print(self.col)
-			cube = self.cubes[self.col]
-			with open(cube,"r") as f:
-				cube_urdf = f.read()
-			
-			quat = tf.transformations.quaternion_from_euler(0,0,0)
-			orient = Quaternion(quat[0],quat[1],quat[2],quat[3])
-			pose = Pose(Point(x=0,y=-0.55,z=0.75), orient)
-			self.sm("cube", cube_urdf, '', pose, 'world')
-			if self.col<2:
-				self.col += 1
-			else:
-				self.col = 0
+		# print(self.col)
+		cube = self.cubes[self.col]
+		with open(cube,"r") as f:
+			cube_urdf = f.read()
+		
+		quat = tf.transformations.quaternion_from_euler(0,0,0)
+		orient = Quaternion(quat[0],quat[1],quat[2],quat[3])
+		pose = Pose(Point(x=0,y=-0.55,z=0.75), orient)
+		self.sm("cube", cube_urdf, '', pose, 'world')
+		if self.col<2:
+			self.col += 1
+		else:
+			self.col = 0
 		rospy.sleep(1)
 
 	def deleteModel(self):

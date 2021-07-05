@@ -12,12 +12,9 @@ find_package(catkin REQUIRED COMPONENTS
   gazebo_msgs
   roscpp
   geometry_msgs
-  std_srvs
-  std_msgs
-  message_generation
 )
 
-find_package(octomap REQUIRED)
+# find_package(octomap REQUIRED)
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -44,13 +41,13 @@ find_package(octomap REQUIRED)
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 
-add_message_files(FILES Tracker.msg)
+# add_message_files(FILES Tracker.msg)
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs
+# )
 
 ###################################
 ## catkin specific configuration ##
@@ -61,9 +58,9 @@ generate_messages(
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-  CATKIN_DEPENDS message_runtime
-)
+# catkin_package(
+#   CATKIN_DEPENDS message_runtime
+# )
 
 ###########
 ## Build ##
